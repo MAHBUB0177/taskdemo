@@ -63,3 +63,6 @@ class Ecom_Products(models.Model):
     stock_limit = models.CharField(max_length=500, blank=True, null=True)
     app_user_id = models.CharField(max_length=20, null=True, blank=True)
     app_data_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.product_name

@@ -4,31 +4,48 @@ import './product.css'
 import axios from "axios";
 import Cookies from 'js-cookie'
 import {domain} from '../env'
+// import Cookies from 'universal-cookie';
+ 
 
 
 
 function ProductCreate() {
+
+  // const cookies = new Cookies();
+ 
+  // cookies.set('myCat', 'Pacman', { path: '/' });
+  // console.log(Cookies.get("csrftoken")); // Pacman
+
 const[product,setProducts]=useState()
 const[unit,setUnit]=useState()
 const[subcategory,setSubcategory]=useState()
 const[category,setCategory]=useState()
+
+// value
+const[prodCategory,setProdCategory]=useState()
+const[subcategories,setSubcategories]=useState()
+const[produnit,setProdUnit]=useState()
 const[limit,setLimit]=useState()
 const[item,setItem]=useState()
+const[id,setId]=useState()
+
+console.log(prodCategory)
+console.log(subcategories)
+console.log(produnit)
+console.log(limit)
 console.log(item)
 
-
-const submitdata = async()=>{
+const submitdata =async (e)=>{
+  e.preventDefault()
   await axios({
     url:`${domain}/api/createproducts/`,
     method: "POST",
-    // headers:{"X-CSRFToken": Cookies.get("csrftoken")},
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'JWT fefege...'
-  },
+    headers:{"X-CSRFToken": Cookies.get("csrftoken")},
+  
     data: {
+      id:id,
       unit: unit,
-      item:item,
+      product_name:item,
       category: category,
       subcategory: subcategory,
       limit:limit,
@@ -124,7 +141,7 @@ useEffect(() => {
 
 const handleChange = event => {
   console.log(event.target.value);
-  setCategory(event.target.value);
+  setProdCategory(event.target.value);
 };
 
 
@@ -137,15 +154,18 @@ const handleChange = event => {
 
 <div className=' row card card-body box-shadow'  >
 <form className='frm' >
-  
+<div className="form-group col-md-6" >
+    <label for="exampleFormControlInput1">product_id</label>
+    <input type="text" class="form-control" onChange={(e)=>setId(e.target.value)} value={id}/>
+  </div>
 
   <div class="form-group col-md-6">
     <label for="exampleFormControlSelect1">Item Type</label>
     <select
-      className="form-control"  value={category} onChange={handleChange}>
+      className="form-control"  value={prodCategory} onChange={handleChange}>
       <option defaultValue>--------- </option>
       {category?.map((item, index) => (
-        <option key={index} value={item.category}>
+        <option key={index} value={item.categories_id}>
           {item.categories_name}
         </option>
       ))}
@@ -161,7 +181,7 @@ const handleChange = event => {
   <div class="form-group col-md-6">
     <label for="exampleFormControlSelect1">sub-category</label>
     <select
-      className="form-control" onChange={(e)=>setSubcategory(e.target.value)} value={subcategory}>
+      className="form-control" onChange={(e)=>setSubcategories(e.target.value)} value={subcategories}>
       <option defaultValue>--------- </option>
       {subcategory?.map((item, index) => (
         <option key={index} value={item.subcategories_id}>
@@ -174,7 +194,7 @@ const handleChange = event => {
   <div class="form-group col-md-6">
     <label for="exampleFormControlSelect1">Product-Unit</label>
     <select
-      className="form-control" onChange={(e)=>setUnit(e.target.value)} value={unit}>
+      className="form-control" onChange={(e)=>setProdUnit(e.target.value)} value={produnit}>
       <option defaultValue>---------- </option>
       {unit?.map((item, index) => (
         <option key={index} value={item.unit_id}>

@@ -56,12 +56,23 @@ class ProductisView(APIView):
 
 class CreateProductisView(APIView):
     def post(self, request):
-        category=request.data['item']
+        category=request.data['product_name']
         print(category,'category id name')
 
         product = Ecom_Products()
-        product.product_name=request.data['item']
+        product.product_id=request.data['id']
+        product.product_name=request.data['product_name']
+        product_unit=Products_Unit()
+        product_unit.unit_id=request.data['unit']
+        product_unit.save()
+        Ecom_item_type=Ecom_item_type()
+        Ecom_item_type.categories_id=request.data['category']
+        Ecom_item_type.save()
+        Ecom_Product_Sub_Categories=Ecom_Product_Sub_Categories()
+        Ecom_Product_Sub_Categories.subcategories_id=request.data['subcategory']
+        Ecom_Product_Sub_Categories.save()
+        product.stock_limit=request.data['limit']
         product.save()
-        # product_serializer = ProductSerializer(
-        #     product_obj, many=True).data
-        return Response(category)
+        response_data = {"error":False,"message":"User Data is Updated"}
+    
+        return Response(response_data)
