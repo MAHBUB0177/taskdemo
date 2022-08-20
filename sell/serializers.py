@@ -9,6 +9,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ecom_Products
         fields = "__all__"
+        depth=1
 
 
 class ProductUnitSerializer(serializers.ModelSerializer):

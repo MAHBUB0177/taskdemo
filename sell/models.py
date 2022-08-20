@@ -60,10 +60,6 @@ class Ecom_Products(models.Model):
     product_old_price = models.DecimalField(
         max_digits=22, decimal_places=2, default=0.00, blank=True, null=True)
     product_feature = models.CharField(max_length=500, blank=True, null=True)
-    #product_specification=models.JSONField(blank=True, null=True)
-    product_specification = models.CharField(
-        max_length=1000, blank=True, null=True)
-    product_keyword = models.CharField(max_length=400, blank=True, null=True)
-    product_viewcount = models.IntegerField(blank=True, null=True)
+    stock_limit = models.CharField(max_length=500, blank=True, null=True)
     app_user_id = models.CharField(max_length=20, null=True, blank=True)
     app_data_time = models.DateTimeField(auto_now_add=True)

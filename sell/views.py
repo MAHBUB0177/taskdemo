@@ -54,9 +54,14 @@ class ProductisView(APIView):
         return Response(product_serializer)
 
 
-# class ProductisView(APIView):
-#     def get(self, request):
-#         product_obj = Ecom_Products.objects.all()
-#         product_serializer = ProductSerializer(
-#             product_obj, many=True).data
-#         return Response(product_serializer)
+class CreateProductisView(APIView):
+    def post(self, request):
+        category=request.data['item']
+        print(category,'category id name')
+
+        product = Ecom_Products()
+        product.product_name=request.data['item']
+        product.save()
+        # product_serializer = ProductSerializer(
+        #     product_obj, many=True).data
+        return Response(category)

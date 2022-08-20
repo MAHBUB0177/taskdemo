@@ -12,4 +12,5 @@ urlpatterns = [
     path('product-unit/', UnitisView.as_view()),
     path('product-subcategories/', SubcategorisView.as_view()),
     path('products/', ProductisView.as_view()),
+    path('createproducts/', CreateProductisView.as_view()),
 ]
