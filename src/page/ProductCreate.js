@@ -5,7 +5,7 @@ import axios from "axios";
 import Cookies from 'js-cookie'
 import {domain} from '../env'
 // import Cookies from 'universal-cookie';
- 
+import Swal from 'sweetalert2'
 
 
 
@@ -44,10 +44,10 @@ const submitdata =async (e)=>{
   
     data: {
       id:id,
-      unit: unit,
+      unit: produnit,
       product_name:item,
-      category: category,
-      subcategory: subcategory,
+      category: prodCategory,
+      subcategory: subcategories,
       limit:limit,
       
 
@@ -55,7 +55,13 @@ const submitdata =async (e)=>{
   })
     .then((response) => {
       console.log(response.data,'categpory data');
-      setProducts(response.data);
+      // setProducts(response.data);
+      Swal.fire({
+        icon: 'success',
+        text: 'Save Successfully!!',
+        timer: 2500
+        
+      })
     })
     .catch((error) => {
       console.log("CategoryProduct", error);

@@ -18,7 +18,7 @@ from django.contrib.auth.models import User
 
 from django.views.generic import TemplateView, ListView
 from rest_framework import generics
-
+from django.shortcuts import get_object_or_404
 
 def current_datetime(request):
     now = datetime.datetime.now()
@@ -56,23 +56,34 @@ class ProductisView(APIView):
 
 class CreateProductisView(APIView):
     def post(self, request):
-        category=request.data['product_name']
-        print(category,'category id name')
 
         product = Ecom_Products()
         product.product_id=request.data['id']
         product.product_name=request.data['product_name']
-        product_unit=Products_Unit()
-        product_unit.unit_id=request.data['unit']
-        product_unit.save()
-        Ecom_item_type=Ecom_item_type()
-        Ecom_item_type.categories_id=request.data['category']
-        Ecom_item_type.save()
-        Ecom_Product_Sub_Categories=Ecom_Product_Sub_Categories()
-        Ecom_Product_Sub_Categories.subcategories_id=request.data['subcategory']
-        Ecom_Product_Sub_Categories.save()
+        unit_obj=Products_Unit.objects.get(unit_id=request.data['unit'])
+        product.unit_id=unit_obj
+        category_obj=Ecom_item_type.objects.get(categories_id=request.data['category'])
+        product.category_id=category_obj
+        sub_category_obj=Ecom_Product_Sub_Categories.objects.get(subcategories_id=request.data['subcategory'])
+        product.sub_category_id=sub_category_obj
         product.stock_limit=request.data['limit']
         product.save()
         response_data = {"error":False,"message":"User Data is Updated"}
-    
+        return Response(response_data)
+
+
+
+class UpdateProductisView(APIView):
+    def post(self, request):
+        product = Ecom_Products.objects.get(product_id=request.data['id'])
+        product.product_name=request.data['product_name']
+        unit_obj=Products_Unit.objects.get(unit_id=request.data['unit'])
+        product.unit_id=unit_obj
+        category_obj=Ecom_item_type.objects.get(categories_id=request.data['category'])
+        product.category_id=category_obj
+        sub_category_obj=Ecom_Product_Sub_Categories.objects.get(subcategories_id=request.data['subcategory'])
+        product.sub_category_id=sub_category_obj
+        product.stock_limit=request.data['limit']
+        product.save()
+        response_data = {"error":False,"message":"User Data is Updated"}
         return Response(response_data)
