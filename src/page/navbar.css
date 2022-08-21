@@ -1,4 +1,12 @@
-.nav {
-    /* z-index: 999; */
-    /* position: fixed; */
+.nav-data {
+    overflow: hidden;
+    background: #913831;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.prdcreate {
+    margin-top: 30px;
 }

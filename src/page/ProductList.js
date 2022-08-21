@@ -4,10 +4,16 @@ import { domain } from '../env.js'
 import { Form } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 import Cookies from 'js-cookie'
+import './navbar.css'
 
 function ProductList() {
+  // set fetch data
 const [product, setProduct] = useState()
-    
+const[unit,setUnit]=useState()
+const[subcategory,setSubcategory]=useState()
+const[category,setCategory]=useState()
+
+// setvalue change
 const[prodCategory,setProdCategory]=useState()
 const[subcategories,setSubcategories]=useState()
 const[produnit,setProdUnit]=useState()
@@ -37,6 +43,9 @@ console.log(item,'=====')
 
    }
 
+
+
+  //  fetch api data call
     useEffect(() => {
         const getAutomobile = async() => {
             await axios({
@@ -54,6 +63,59 @@ console.log(item,'=====')
         getAutomobile();
     }, []);
 
+    useEffect(() => {
+      const getunit = async () => {
+        await axios({
+          url:`${domain}/api/product-unit/`,
+          method: "GET",
+        })
+          .then((response) => {
+            setUnit(response.data)
+          
+          
+          })
+          .catch((error) => {
+            console.log("CategoryProduct", error);
+          });
+      };
+      getunit();
+    }, []);
+
+    useEffect(() => {
+      const getsub_category = async () => {
+        await axios({
+          url:`${domain}/api/product-subcategories/`,
+          method: "GET",
+        })
+          .then((response) => {
+            setSubcategory(response.data)
+          
+          
+          })
+          .catch((error) => {
+            console.log("CategoryProduct", error);
+          });
+      };
+      getsub_category();
+    }, []);
+    
+    useEffect(() => {
+      const get_category = async () => {
+        await axios({
+          url:`${domain}/api/categoris/`,
+          method: "GET",
+        })
+          .then((response) => {
+            setCategory(response.data)
+          
+          
+          })
+          .catch((error) => {
+            console.log("CategoryProduct", error);
+          });
+      };
+      get_category();
+    }, []);
 
 
     const submitdata =async (e)=>{
@@ -91,7 +153,7 @@ console.log(item,'=====')
     }
 
     return ( 
-      <div className='container'>
+      <div className='container prdcreate'>
         <table class="table table-striped">
         <thead class="thead-light">
       <tr>
@@ -143,7 +205,16 @@ console.log(item,'=====')
         <Form>
         <div className="form-group " >
           <label for="exampleFormControlInput1">Item Type</label>
-          <input type="text" class="form-control" value={prodCategory} onChange={(e)=>setProdCategory(e.target.value)}/>
+          {/* <input type="text" class="form-control" value={prodCategory} onChange={(e)=>setProdCategory(e.target.value)}/> */}
+          <select
+      className="form-control"  value={prodCategory} onChange={(e)=>setProdCategory(e.target.value)}>
+      <option defaultValue>--------- </option>
+      {category?.map((item, index) => (
+        <option key={index} value={item.categories_id}>
+          {item.categories_name}
+        </option>
+      ))}
+    </select>
         </div>
 
         <div className="form-group " >
@@ -154,13 +225,30 @@ console.log(item,'=====')
 
         <div className="form-group " >
           <label for="exampleFormControlInput1">sub-category</label>
-          <input type="text" class="form-control" value={subcategories} onChange={(e)=>setSubcategories(e.target.value)} />
+          {/* <input type="text" class="form-control" value={subcategories} onChange={(e)=>setSubcategories(e.target.value)} /> */}
+          <select
+      className="form-control" onChange={(e)=>setSubcategories(e.target.value)} value={subcategories}>
+      <option defaultValue>--------- </option>
+      {subcategory?.map((item, index) => (
+        <option key={index} value={item.subcategories_id}>
+          {item.subcategories_name}
+        </option>
+      ))}
+    </select>
         </div>
 
 
         <div className="form-group " >
           <label for="exampleFormControlInput1">Product-Unit</label>
-          <input type="text" class="form-control" value={produnit} onChange={(e)=>setProdUnit(e.target.value)}/>
+          {/* <input type="text" class="form-control" value={produnit} onChange={(e)=>setProdUnit(e.target.value)}/> */}
+        <select  className="form-control" onChange={(e)=>setProdUnit(e.target.value)} value={produnit}>
+      <option defaultValue>---------- </option>
+      {unit?.map((item, index) => (
+        <option key={index} value={item.unit_id}>
+          {item.unit_name}
+        </option>
+      ))}
+    </select>
         </div>
 
 
@@ -180,10 +268,6 @@ console.log(item,'=====')
   </div>
 </div>
 
-<div class="text-center">
-  <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch
-    Modal Login Form</a>
-</div>
       </div>
     )
 }

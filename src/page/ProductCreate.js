@@ -6,6 +6,7 @@ import Cookies from 'js-cookie'
 import {domain} from '../env'
 // import Cookies from 'universal-cookie';
 import Swal from 'sweetalert2'
+import './navbar.css'
 
 
 
@@ -153,13 +154,13 @@ const handleChange = event => {
 
 
   return (
-    <div className='container'>
+    <div className='container prdcreate'>
 <div className='row '>
 <h2 style={{justifyContent:'center',textAlign:'center'}}> product create</h2> 
 </div>
 
-<div className=' row card card-body box-shadow'  >
-<form className='frm' >
+<div className='  card card-body frm-data' >
+<form className=' row  ' >
 <div className="form-group col-md-6" >
     <label for="exampleFormControlInput1">product_id</label>
     <input type="text" class="form-control" onChange={(e)=>setId(e.target.value)} value={id}/>
@@ -208,21 +209,24 @@ const handleChange = event => {
         </option>
       ))}
     </select>
-    
   </div>
 
   <div className="form-group col-md-6" >
     <label for="exampleFormControlInput1">Stock Limit</label>
     <input type="text" class="form-control" onChange={(e)=>setLimit(e.target.value)} value={limit}/>
   </div>
-  <br/>
-
-  <div className='col-md-6' >
-  <button type="button" class="btn btn-success" onClick={submitdata}>Save</button>
-  <Link to='/list'>
-  <button type="button" class="btn btn-danger" style={{marginLeft:'10px'}}>Cancel</button>
-
+ 
+<br/><br/>
+  <div className='row d-flex' style={{marginTop:'20px'}}>
+   <p >
+   <button type="button" class="btn btn-success" onClick={submitdata} style={{width:'120px'}}>Save</button>
+   <Link to='/list'>
+  <button type="button" class="btn btn-danger"  style={{width:'120px',marginLeft:'10px'}}>Cancel</button>
   </Link>
+    </p> 
+  
+ 
+ 
   </div>
 </form>
 <br></br>

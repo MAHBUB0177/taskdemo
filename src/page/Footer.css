@@ -1,0 +1,32 @@
+.fot-bar {
+    display: flex;
+    background-color: #fcf7f8;
+    margin: 30px;
+}
+
+.item {
+    display: flex;
+    flex: 1;
+    position: relative;
+}
+
+.item:last-child {
+    flex: 2;
+    padding: 0px 30px;
+}
+
+.cards {
+    /* display: flex; */
+    flex: 1;
+    justify-content: space-between;
+}
+
+.text {
+    color: chocolate;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.textdata {
+    color: #ab7d86;
+}

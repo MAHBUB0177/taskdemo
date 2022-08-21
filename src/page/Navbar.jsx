@@ -1,41 +1,39 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-
-export const Navbar = () => {
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import './navbar.css'
+function BasicExample() {
   return (
-    <div>
-          <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-    
-                    <Link to='/' style={{textDecoration:'none'}}>
-                    <li class="nav-item" style={{marginRight:'30px',fontSize:'20px'}}>
-                    Home
-                    </li>
-                    </Link>
+    <Navbar  expand="lg" className='nav-data'>
+      <Container>
+      <Link to='#' style={{textDecoration:'none'}}>
+        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+      </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
 
                     <Link to='/create' style={{textDecoration:'none'}}>
-                    <li class="nav-item" style={{marginRight:'30px',fontSize:'20px'}}>
+                    <li class="nav-item" style={{marginRight:'30px',fontSize:'20px',color:'#f29d96'}}>
                     Product Create
                     </li>
                     </Link>
     
                     <Link to='/list' style={{textDecoration:'none'}}>
-                    <li class="nav-item" style={{marginRight:'30px',fontSize:'20px'}}>
+                    <li class="nav-item" style={{marginRight:'30px',fontSize:'20px',color:'#f29d96'}}>
                     Product List
                     </li>
                     </Link>
+       
 
-
-
-     
-    </ul>
-  </div>
-</nav>
-    </div>
-  )
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
+
+export default BasicExample;

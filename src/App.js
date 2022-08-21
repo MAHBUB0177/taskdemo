@@ -6,16 +6,18 @@ import {
   Route,
  
  } from "react-router-dom";
-import { Navbar } from './page/Navbar';
+import BasicExample, { Navbar } from './page/Navbar';
 import ProductCreate from './page/ProductCreate';
 import ProductList from './page/ProductList';
+import Footer from './page/Footer';
 
 
 function App() {
   return (
     <div className="wrapper">
     <Router>
-    <Navbar/>
+    {/* <Navbar/> */}
+    <BasicExample/>
     <br></br>
     <Routes>
      <Route path="/"  />
@@ -25,7 +27,7 @@ function App() {
 
   
     </Routes>
-  
+  <Footer/>
    </Router>
     </div>
   );
