@@ -30,11 +30,7 @@ const[limit,setLimit]=useState()
 const[item,setItem]=useState()
 const[id,setId]=useState()
 
-console.log(prodCategory)
-console.log(subcategories)
-console.log(produnit)
-console.log(limit)
-console.log(item)
+
 
 const submitdata =async (e)=>{
   e.preventDefault()
@@ -63,10 +59,14 @@ const submitdata =async (e)=>{
         timer: 2500
         
       })
+      window.location.reload()
     })
     .catch((error) => {
       console.log("CategoryProduct", error);
     });
+
+
+ 
 }
 
 
@@ -154,83 +154,83 @@ const handleChange = event => {
 
 
   return (
-    <div className='container prdcreate'>
-<div className='row '>
-<h2 style={{justifyContent:'center',textAlign:'center'}}> product create</h2> 
-</div>
+  <div className='container prdcreate'>
+        <div className='row '>
+        <h2 style={{justifyContent:'center',textAlign:'center'}}> product create</h2> 
+        </div>
 
-<div className='  card card-body frm-data' >
-<form className=' row  ' >
-<div className="form-group col-md-6" >
-    <label for="exampleFormControlInput1">product_id</label>
-    <input type="text" class="form-control" onChange={(e)=>setId(e.target.value)} value={id}/>
-  </div>
+<div className='  card card-body ' >
+        <form className=' row contact-form' >
+        <div className="form-group col-md-6" >
+            <label for="exampleFormControlInput1">product_id</label>
+            <input type="text" class="form-control" onChange={(e)=>setId(e.target.value)} value={id}/>
+          </div>
 
-  <div class="form-group col-md-6">
-    <label for="exampleFormControlSelect1">Item Type</label>
-    <select
-      className="form-control"  value={prodCategory} onChange={handleChange}>
-      <option defaultValue>--------- </option>
-      {category?.map((item, index) => (
-        <option key={index} value={item.categories_id}>
-          {item.categories_name}
-        </option>
-      ))}
-    </select>
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlSelect1">Item Type</label>
+            <select
+              className="form-control"  value={prodCategory} onChange={handleChange}>
+              <option defaultValue>--------- </option>
+              {category?.map((item, index) => (
+                <option key={index} value={item.categories_id}>
+                  {item.categories_name}
+                </option>
+              ))}
+            </select>
 
-  </div>
+          </div>
 
-  <div className="form-group col-md-6" >
-    <label for="exampleFormControlInput1">Product Name</label>
-    <input type="email" class="form-control"onChange={(e)=>setItem(e.target.value)} value={item}/>
-  </div>
+          <div className="form-group col-md-6" >
+            <label for="exampleFormControlInput1">Product Name</label>
+            <input type="email" class="form-control"onChange={(e)=>setItem(e.target.value)} value={item}/>
+          </div>
 
-  <div class="form-group col-md-6">
-    <label for="exampleFormControlSelect1">sub-category</label>
-    <select
-      className="form-control" onChange={(e)=>setSubcategories(e.target.value)} value={subcategories}>
-      <option defaultValue>--------- </option>
-      {subcategory?.map((item, index) => (
-        <option key={index} value={item.subcategories_id}>
-          {item.subcategories_name}
-        </option>
-      ))}
-    </select>
-  </div>
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlSelect1">sub-category</label>
+            <select
+              className="form-control" onChange={(e)=>setSubcategories(e.target.value)} value={subcategories}>
+              <option defaultValue>--------- </option>
+              {subcategory?.map((item, index) => (
+                <option key={index} value={item.subcategories_id}>
+                  {item.subcategories_name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-  <div class="form-group col-md-6">
-    <label for="exampleFormControlSelect1">Product-Unit</label>
-    <select
-      className="form-control" onChange={(e)=>setProdUnit(e.target.value)} value={produnit}>
-      <option defaultValue>---------- </option>
-      {unit?.map((item, index) => (
-        <option key={index} value={item.unit_id}>
-          {item.unit_name}
-        </option>
-      ))}
-    </select>
-  </div>
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlSelect1">Product-Unit</label>
+            <select
+              className="form-control" onChange={(e)=>setProdUnit(e.target.value)} value={produnit}>
+              <option defaultValue>---------- </option>
+              {unit?.map((item, index) => (
+                <option key={index} value={item.unit_id}>
+                  {item.unit_name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-  <div className="form-group col-md-6" >
-    <label for="exampleFormControlInput1">Stock Limit</label>
-    <input type="text" class="form-control" onChange={(e)=>setLimit(e.target.value)} value={limit}/>
-  </div>
- 
-<br/><br/>
-  <div className='row d-flex' style={{marginTop:'20px'}}>
-   <p >
-   <button type="button" class="btn btn-success" onClick={submitdata} style={{width:'120px'}}>Save</button>
-   <Link to='/list'>
-  <button type="button" class="btn btn-danger"  style={{width:'120px',marginLeft:'10px'}}>Cancel</button>
-  </Link>
-    </p> 
-  
- 
- 
-  </div>
-</form>
-<br></br>
-<br/>
+          <div className="form-group col-md-6" >
+            <label for="exampleFormControlInput1">Stock Limit</label>
+            <input type="text" class="form-control" onChange={(e)=>setLimit(e.target.value)} value={limit}/>
+          </div>
+        
+        <br/><br/>
+          <div className='row d-flex' style={{marginTop:'20px'}}>
+          <p >
+          <button type="button" class="btn btn-success" onClick={submitdata} style={{width:'120px'}}>Save</button>
+          <Link to='/list'>
+          <button type="button" class="btn btn-danger"  style={{width:'120px',marginLeft:'10px'}}>Cancel</button>
+          </Link>
+            </p> 
+          
+        
+        
+          </div>
+        </form>
+        <br></br>
+        <br/>
 
 </div>
 </div>
