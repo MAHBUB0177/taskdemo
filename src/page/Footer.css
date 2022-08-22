@@ -10,15 +10,14 @@
     position: relative;
 }
 
-.item:last-child {
-    flex: 2;
-    padding: 0px 30px;
-}
 
-.cards {
-    /* display: flex; */
-    flex: 1;
+.item:last-child{
+    flex: 2;
     justify-content: space-between;
+}
+.cards {
+    flex: 1;
+    padding: 0 20px;   
 }
 
 .text {
@@ -29,4 +28,18 @@
 
 .textdata {
     color: #ab7d86;
+}
+
+@media screen and (max-width:480px) {
+    .fot-bar{
+              height: auto;
+
+    }
+    .item:first-child{
+              display: none;
+    }
+    .item{
+              flex-direction: column;
+    }
+    
 }

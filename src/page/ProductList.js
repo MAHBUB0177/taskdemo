@@ -4,7 +4,7 @@ import { domain } from '../env.js'
 import { Form } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 import Cookies from 'js-cookie'
-import './navbar.css'
+// import './navbar.css'
 
 function ProductList() {
   // set fetch data
@@ -71,8 +71,6 @@ console.log(item,'=====')
         })
           .then((response) => {
             setUnit(response.data)
-          
-          
           })
           .catch((error) => {
             console.log("CategoryProduct", error);
@@ -107,8 +105,6 @@ console.log(item,'=====')
         })
           .then((response) => {
             setCategory(response.data)
-          
-          
           })
           .catch((error) => {
             console.log("CategoryProduct", error);
@@ -119,8 +115,6 @@ console.log(item,'=====')
 
 
     const submitdata =async (e)=>{
-      console.log('data test')
-      // e.preventDefault()
       await axios({
         url:`${domain}/api/updateproducts/`,
         method: "POST",
@@ -133,8 +127,6 @@ console.log(item,'=====')
           category: prodCategory,
           subcategory: subcategories,
           limit:limit,
-          
-    
         }
       })
         .then((response) => {
@@ -161,8 +153,6 @@ console.log(item,'=====')
       <th scope="col">Product</th>
       <th scope="col">Category</th>
       <th scope="col">Sub-Category</th>
-      <th scope="col">unit</th>
-      <th scope="col">Stock-Limit</th>
       <th scope="col">Action</th>
 
     </tr>
@@ -176,8 +166,7 @@ console.log(item,'=====')
       <td>{item.product_name}</td>
       <td>{item?.category_id?.categories_name}</td>
       <td>{item?.sub_category_id?.subcategories_name}</td>
-      <td>{item?.unit_id?.unit_name}</td>
-      <td>{item?.stock_limit}</td>
+     
       <td><p><button type="button" class="btn btn-danger" onClick={()=>handeldelete(item.product_id)}>Delete</button>
       <button type="button" class="btn btn-primary" style={{marginLeft:'10px'}} onClick={()=>handeledit(item.product_id)} data-bs-toggle="modal" data-bs-target="#modalLoginForm" >Edit</button>
       </p></td>
@@ -185,12 +174,8 @@ console.log(item,'=====')
     </tr>
       ))
     }
-    
-    
   </tbody>
 </table>
-
-
 
 <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
@@ -205,7 +190,6 @@ console.log(item,'=====')
         <Form>
         <div className="form-group " >
           <label for="exampleFormControlInput1">Item Type</label>
-          {/* <input type="text" class="form-control" value={prodCategory} onChange={(e)=>setProdCategory(e.target.value)}/> */}
           <select
       className="form-control"  value={prodCategory} onChange={(e)=>setProdCategory(e.target.value)}>
       <option defaultValue>--------- </option>
@@ -225,7 +209,6 @@ console.log(item,'=====')
 
         <div className="form-group " >
           <label for="exampleFormControlInput1">sub-category</label>
-          {/* <input type="text" class="form-control" value={subcategories} onChange={(e)=>setSubcategories(e.target.value)} /> */}
           <select
       className="form-control" onChange={(e)=>setSubcategories(e.target.value)} value={subcategories}>
       <option defaultValue>--------- </option>
@@ -240,7 +223,6 @@ console.log(item,'=====')
 
         <div className="form-group " >
           <label for="exampleFormControlInput1">Product-Unit</label>
-          {/* <input type="text" class="form-control" value={produnit} onChange={(e)=>setProdUnit(e.target.value)}/> */}
         <select  className="form-control" onChange={(e)=>setProdUnit(e.target.value)} value={produnit}>
       <option defaultValue>---------- </option>
       {unit?.map((item, index) => (
@@ -267,6 +249,8 @@ console.log(item,'=====')
     </div>
   </div>
 </div>
+
+
 
       </div>
     )

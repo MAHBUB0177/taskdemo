@@ -6,7 +6,7 @@ import {
   Route,
  
  } from "react-router-dom";
-import BasicExample, { Navbar } from './page/Navbar';
+import BasicExample from './page/Navbar';
 import ProductCreate from './page/ProductCreate';
 import ProductList from './page/ProductList';
 import Footer from './page/Footer';
@@ -16,7 +16,6 @@ function App() {
   return (
     <div className="wrapper">
     <Router>
-    {/* <Navbar/> */}
     <BasicExample/>
     <br></br>
     <Routes>
