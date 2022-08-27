@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView,TokenVerifyView
 
 from .views import *
 
@@ -14,4 +15,8 @@ urlpatterns = [
     path('products/', ProductisView.as_view()),
     path('createproducts/', CreateProductisView.as_view()),
     path('updateproducts/', UpdateProductisView.as_view()),
+    path('gettoken/',TokenObtainPairView.as_view()),
+    path('refreshtoken/', TokenRefreshView.as_view()),
+
+
 ]
