@@ -56,7 +56,6 @@ class ProductisView(APIView):
 
 class CreateProductisView(APIView):
     def post(self, request):
-
         product = Ecom_Products()
         product.product_id=request.data['id']
         product.product_name=request.data['product_name']
