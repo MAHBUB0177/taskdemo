@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import Cookies from 'js-cookie'
 // import './navbar.css'
 
+
 function ProductList() {
   // set fetch data
 const [product, setProduct] = useState()
@@ -28,7 +29,9 @@ console.log(item,'=====')
     setProduct(data)
    }
 
-   
+
+ 
+
    const handeledit=(id)=>{
     console.log(id,'product id')
     let item_data=product.filter((item)=>item.product_id === id)
@@ -167,7 +170,7 @@ console.log(item,'=====')
       <td>{item?.category_id?.categories_name}</td>
       <td>{item?.sub_category_id?.subcategories_name}</td>
      
-      <td><p><button type="button" class="btn btn-danger" onClick={()=>handeldelete(item.product_id)}>Delete</button>
+      <td><p><button type="button" class="btn btn-danger" onClick={()=>handeldelete(item?.product_id)}>Delete</button>
       <button type="button" class="btn btn-primary" style={{marginLeft:'10px'}} onClick={()=>handeledit(item.product_id)} data-bs-toggle="modal" data-bs-target="#modalLoginForm" >Edit</button>
       </p></td>
           

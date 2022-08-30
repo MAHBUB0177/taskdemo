@@ -9,7 +9,10 @@ import {
 import BasicExample from './page/Navbar';
 import ProductCreate from './page/ProductCreate';
 import ProductList from './page/ProductList';
+
 import Footer from './page/Footer';
+import { Authpage } from './page/Authpage';
+
 
 
 function App() {
@@ -22,6 +25,10 @@ function App() {
      <Route path="/"  />
      <Route path="/create" element={<ProductCreate/>} />
      <Route path="/list" element={<ProductList/>} />
+     <Route path="/login" element={<Authpage/>} />
+    
+   
+     
      
 
   

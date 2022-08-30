@@ -10,6 +10,7 @@ from rest_framework.response import Response
 # from rest_framework.permissions import isAuthenticated
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.db.models import Q
 from django.utils import timezone
 from .models import *
@@ -47,6 +48,9 @@ class SubcategorisView(APIView):
 
 
 class ProductisView(APIView):
+    # authentication_classes=[JWTAuthentication, ]
+    # permission_classes = [IsAuthenticated, ]
+
     def get(self, request):
         product_obj = Ecom_Products.objects.all()
         product_serializer = ProductSerializer(

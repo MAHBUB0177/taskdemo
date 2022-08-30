@@ -27,6 +27,13 @@ function BasicExample() {
                     Product List
                     </li>
                     </Link>
+
+                    <Link to='/login' style={{textDecoration:'none'}}>
+                    <li class="nav-item" style={{marginRight:'30px',fontSize:'20px',color:'#f29d96'}}>
+                    Login
+                    </li>
+                    </Link>
+       
        
 
           </Nav>
