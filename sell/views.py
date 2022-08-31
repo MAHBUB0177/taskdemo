@@ -48,7 +48,7 @@ class SubcategorisView(APIView):
 
 
 class ProductisView(APIView):
-    # authentication_classes=[JWTAuthentication, ]
+    authentication_classes=[JWTAuthentication, ]
     # permission_classes = [IsAuthenticated, ]
 
     def get(self, request):

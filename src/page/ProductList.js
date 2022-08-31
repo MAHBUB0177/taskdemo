@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import { domain } from '../env.js'
+import { domain,getheader } from '../env.js'
 import { Form } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 import Cookies from 'js-cookie'
@@ -121,7 +121,8 @@ console.log(item,'=====')
       await axios({
         url:`${domain}/api/updateproducts/`,
         method: "POST",
-        headers:{"X-CSRFToken": Cookies.get("csrftoken")},
+        headers:getheader,
+        // headers:{"X-CSRFToken": Cookies.get("csrftoken")},
       
         data: {
           id:id,

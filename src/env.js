@@ -14,21 +14,20 @@ export const domain = "http://127.0.0.1:8000";
 
 
 
-const token =window.localStorage.getItem("token");
+let token = window.localStorage.getItem("token");
+token = JSON.parse(token)
 const csrftoken = Cookies.get("csrftoken");
 export const getheader = {
-  Authorization: `token ${token}`,
+    Authorization: `Bearer ${token}`,
 };
+console.log(getheader, 'getheader data')
 
 export const postheader = {
-  "X-CSRFToken": csrftoken,
+    "X-CSRFToken": csrftoken,
 };
 
 export const posttokenheader = {
-  Authorization: `token ${token}`,
-  
-  "X-CSRFToken": csrftoken,
+    Authorization: `token ${token}`,
+
+    "X-CSRFToken": csrftoken,
 };
-
-
-

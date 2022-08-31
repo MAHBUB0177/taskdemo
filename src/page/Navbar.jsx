@@ -5,6 +5,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import './navbar.css'
 function BasicExample() {
+
+  const logout=()=>{
+    window.localStorage.clear()
+    window.location.reload();
+  }
   return (
     <Navbar  expand="lg" className='nav-data'>
       <Container>
@@ -33,6 +38,10 @@ function BasicExample() {
                     Login
                     </li>
                     </Link>
+
+                    <li class="nav-item" style={{marginRight:'30px',fontSize:'20px',color:'#f29d96',cursor:'pointer'}} onClick={logout}>
+                 Logout 
+                    </li>
        
        
 

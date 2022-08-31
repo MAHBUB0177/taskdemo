@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './product.css'
 import axios from "axios";
 import Cookies from 'js-cookie'
-import {domain} from '../env'
+import {domain,getheader} from '../env'
 // import Cookies from 'universal-cookie';
 import Swal from 'sweetalert2'
 import './navbar.css'
@@ -37,7 +37,8 @@ const submitdata =async (e)=>{
   await axios({
     url:`${domain}/api/createproducts/`,
     method: "POST",
-    headers:{"X-CSRFToken": Cookies.get("csrftoken")},
+    headers:getheader,
+    // headers:{"X-CSRFToken": Cookies.get("csrftoken")},
   
     data: {
       id:id,
